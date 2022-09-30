@@ -1,0 +1,23 @@
+{
+  "name": "reading-rainforest-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Blue-Ocean-Slytherin/Reading-Rainforest-Backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Blue-Ocean-Slytherin/Reading-Rainforest-Backend/issues"
+  },
+  "homepage": "https://github.com/Blue-Ocean-Slytherin/Reading-Rainforest-Backend#readme",
+  "dependencies": {
+    "mongoose": "^6.6.3"
+  }
+}
