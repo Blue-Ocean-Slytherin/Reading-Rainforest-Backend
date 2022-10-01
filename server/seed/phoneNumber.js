@@ -1,4 +1,4 @@
-var phoneNumbers = [
+module.exports = [
   "(767) 364-1697",
   "(380) 795-7842",
   "(213) 513-8934",
@@ -1000,5 +1000,3 @@ var phoneNumbers = [
   "(289) 697-6666",
   "(340) 665-2332",
 ];
-
-export default phoneNumbers;
