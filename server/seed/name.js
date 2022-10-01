@@ -1,4 +1,4 @@
-var firstLast = [
+module.exports = [
   "Cassie Anthony",
   "Anya Mora",
   "Reed Parsons",
@@ -1000,5 +1000,3 @@ var firstLast = [
   "Zoe Doyle",
   "Nyasia Keller",
 ];
-
-export default firstLast;
