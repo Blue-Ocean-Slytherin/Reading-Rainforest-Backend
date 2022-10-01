@@ -1,4 +1,4 @@
-var emails = [
+module.exports = [
   "msherr@sbcglobal.net",
   "ccohen@optonline.net",
   "matthijs@gmail.com",
@@ -1000,5 +1000,3 @@ var emails = [
   "jimmichie@mac.com",
   "xnormal@mac.com",
 ];
-
-export default emails;
