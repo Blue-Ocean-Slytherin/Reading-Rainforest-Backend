@@ -38,5 +38,3 @@ let userSchema = mongoose.Schema({
 });
 
 module.exports = mongoose.model("Users", userSchema);
-
-// subs
