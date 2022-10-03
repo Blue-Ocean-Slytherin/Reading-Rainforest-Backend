@@ -49,6 +49,4 @@ let getData = () => {
   return User.find({}).limit(10);
 };
 
-module.exports = {
-  getData,
-};
+module.exports = User;
