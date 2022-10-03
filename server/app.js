@@ -3,7 +3,13 @@ const db = require("./db/schema");
 const app = express();
 const morgan = require("morgan");
 const Router = require("express");
+<<<<<<< HEAD
 const axios = require("axios").default;
+=======
+const controllers = require('./routes/controllers.js');
+// const qRouter = require("./routes/questions.js");
+// const aRouter = require("./routes/answers.js");
+>>>>>>> ed7598398eed627b50cd2d847404531adabbc6d0
 
 app.use(
   morgan(":method :url :status :res[content-length] - :response-time ms")
@@ -40,6 +46,9 @@ app.get("/books/:searchInput", (req, res) => {
     })
     .catch((error) => console.log(error));
 });
+app.get('/user/subs', controllers.getUserSub); // temp, just to see what's in DB
+
+app.get('/user/:userSub/books', controllers.getUserBooks);
 
 app.listen(3001, () => {
   console.log(`Listening at http://localhost:3001`);

@@ -49,6 +49,7 @@ let getData = () => {
   return User.find({}).limit(10);
 };
 
+<<<<<<< HEAD
 let getISBNs = () => {
   return User.find();
 };
@@ -57,3 +58,6 @@ module.exports = {
   getData,
   getISBNs,
 };
+=======
+module.exports = User;
+>>>>>>> ed7598398eed627b50cd2d847404531adabbc6d0
