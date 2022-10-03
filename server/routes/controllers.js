@@ -1,5 +1,7 @@
 const Users = require('./models.js');
 
-export const getAll = ( req, res ) => {
-
+const getUserBooks = ( req, res ) => {
+  console.log(req.body)
 };
+
+module.exports getUserBooks = getUserBooks;
