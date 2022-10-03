@@ -49,6 +49,11 @@ let getData = () => {
   return User.find({}).limit(10);
 };
 
+let getISBNs = () => {
+  return User.find();
+};
+
 module.exports = {
   getData,
+  getISBNs,
 };
