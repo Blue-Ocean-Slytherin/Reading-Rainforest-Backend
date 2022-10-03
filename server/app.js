@@ -1,17 +1,9 @@
-<<<<<<< HEAD
-const { MongoClient, ServerApiVersion } = require("mongodb");
-const uri =
-  "mongodb+srv://slytherin:house123456@cluster0.jx9wj4g.mongodb.net/?retryWrites=true&w=majority"; // Enter username and passwords
-const client = new MongoClient(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  serverApi: ServerApiVersion.v1,
-=======
 const express = require("express");
 const db = require("./db/schema");
 const app = express();
 const morgan = require("morgan");
 const Router = require("express");
+const controllers = require('./routes/controllers.js');
 // const qRouter = require("./routes/questions.js");
 // const aRouter = require("./routes/answers.js");
 
@@ -28,8 +20,11 @@ app.get("/initSearchBooks", (req, res) => {
     .catch((error) => {
       res.status(400).send("GET from server hit an error");
     });
->>>>>>> 8903e2c6719e94459cae2008b20c9246f0587614
 });
+
+app.get('/user/subs', controllers.getUserSub); // temp, just to see what's in DB
+
+app.get('/user/:userSub/books', controllers.getUserBooks);
 
 app.listen(3001, () => {
   console.log(`Listening at http://localhost:3001`);
