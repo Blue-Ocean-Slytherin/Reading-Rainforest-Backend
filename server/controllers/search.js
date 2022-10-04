@@ -20,7 +20,6 @@ module.exports = {
             onlyISBN.push(isbn.volumeInfo.industryIdentifiers[1].identifier);
           }
         });
-        console.log("bookISBN:", onlyISBN);
         var fullData = response.data.items;
         searchModel.search.searchBooks(onlyISBN).then((response) => {
           var re = response
@@ -31,11 +30,9 @@ module.exports = {
           var foundISBN = response.filter((val) => val.length > 0)[0][0]
             .books[0];
           var userData = response.filter((val) => val.length > 0)[0];
-          console.log("user data:", userData);
           axios
             .get(`https://www.googleapis.com/books/v1/volumes?q=${foundISBN}`)
             .then((resp) => {
-              console.log("Google Book Info:", resp.data.items[0]);
               var bookAndUser = {
                 bookData: resp.data.items[0],
                 userData: userData,
