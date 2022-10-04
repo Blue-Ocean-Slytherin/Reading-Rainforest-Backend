@@ -4,7 +4,6 @@ const app = express();
 const morgan = require("morgan");
 const Router = require("express");
 const axios = require("axios").default;
-const controllers = require("./routes/controllers.js");
 const searchRouter = require("./routes/search.js");
 const userRouter = require("./routes/user.js");
 
