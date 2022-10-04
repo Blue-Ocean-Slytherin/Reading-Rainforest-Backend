@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const uuid = require("uuid");
 const books = require("./books");
 const emails = require("./email");
 const locations = require("./location");
@@ -33,6 +34,8 @@ const seedDB = async () => {
       ratingTotal: 0,
       ratingsCount: 0,
       books: [books[x].isbn],
+      uid: uuid.v4(),
+      saved: [],
     });
     await user.save();
   }
