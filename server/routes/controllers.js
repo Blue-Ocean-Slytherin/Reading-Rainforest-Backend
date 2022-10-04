@@ -1,9 +1,9 @@
 const Models = require('./models.js');
 
-const getUserSub = async ( req, res ) => {
+const getUsers = async ( req, res ) => {
   try {
-    let results = await Models.getUserSub();
-    console.log(results);
+    let results = await Models.getUsers();
+    // console.log(results);
     res.send(results);
   } catch (err) {
     console.log('There was an error in controllers.getUserSub', err);
@@ -11,15 +11,16 @@ const getUserSub = async ( req, res ) => {
   }
 };
 
-const getUserBooks = ( req, res ) => {
+const getUserInfo = async ( req, res ) => {
   try {
-    console.log(req.body)
+    let results = await Models.getUserInfo(req.params.uid);
+    // console.log(results);
     res.sendStatus(418);
   } catch (err) {
-    console.log('There was an error in getUserBooks', err);
+    console.log('There was an error in controllers.getUserBooks', err);
     res.sendStatus(500);
   }
 };
 
-module.exports.getUserSub = getUserSub;
-module.exports.getUserBooks = getUserBooks;
+module.exports.getUsers = getUsers;
+module.exports.getUserInfo = getUserInfo;

@@ -22,9 +22,11 @@ app.get("/initSearchBooks", (req, res) => {
     });
 });
 
-app.get('/user/subs', controllers.getUserSub); // temp, just to see what's in DB
+app.get('/user/userID', controllers.getUsers); // temp, just to see what's in DB
 
-app.get('/user/:userSub/books', controllers.getUserBooks);
+app.get('/user/:uid/', controllers.getUserInfo);
+
+
 
 app.listen(3001, () => {
   console.log(`Listening at http://localhost:3001`);
