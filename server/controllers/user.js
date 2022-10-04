@@ -1,22 +1,24 @@
-var userModel = require("../models");
+var userModel = require("../models/user");
 
 module.exports = {
-  getUsers: (req, res) => {
-    console.log("in getusersub");
-    userModel.user.getUsers().then((response) => {
-      console.log(response);
-      res.status(200).json(response);
-    });
+  getUsers: async ( req, res ) => {
+    try {
+      let results = await userModel.getUsers();
+      // console.log(results);
+      res.send(results);
+    } catch (err) {
+      console.log('There was an error in user/controllers.getUserSub', err);
+      res.sendStatus(500);
+    }
+  },
+
+  getUserInfo: async ( req, res ) => {
+    try {
+      let results = await userModel.getUserInfo(req.params.uid);
+      res.send(results[0]);
+    } catch (err) {
+      console.log('There was an error in user/controllers.getUserBooks', err);
+      res.sendStatus(500);
+    }
   },
 };
-
-// const getUserSub = async ( req, res ) => {
-//   try {
-//     let results = await Models.getUserSub();
-//     console.log(results);
-//     res.send(results);
-//   } catch (err) {
-//     console.log('There was an error in controllers.getUserSub', err);
-//     res.sendStatus(500);
-//   }
-// };
