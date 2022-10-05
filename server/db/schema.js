@@ -22,7 +22,7 @@ let userSchema = mongoose.Schema({
     {
       transactionID: mongoose.ObjectId,
       ratingNumber: { type: String },
-      tradedToUser: { type: Number },
+      tradedToUser: { type: String },
       status: { type: String },
       isbn: { type: String },
       dateTime: { type: Date },
