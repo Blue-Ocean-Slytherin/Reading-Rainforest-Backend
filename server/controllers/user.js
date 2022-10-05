@@ -21,4 +21,31 @@ module.exports = {
       res.sendStatus(500);
     }
   },
+
+  makeNewUser: async ( req, res ) => {
+    try {
+      const { uid, fullName, email, phoneNumber, profilePhoto, lat, long } = req.body;
+
+      let check = await userModel.getUserInfo(uid);
+      if (!check[0]) {
+        let newUser = await userModel.makeNewUser(uid, fullName, email, phoneNumber, profilePhoto, lat, long);
+        res.send(newUser);
+      } else {
+        res.sendStatus(400);
+      }
+    } catch (err) {
+      console.log('There was an error in user/controllers.makeNewUser', err);
+      res.sendStatus(500);
+    }
+  },
+
+  deleteUser: async ( req, res ) => {
+    try {
+      let results = await userModel.deleteUser(req.params.uid);
+      res.send(results[0]);
+    } catch (err) {
+      console.log('There was an error in user/controllers.deleteUser', err);
+      res.sendStatus(500);
+    }
+  },
 };

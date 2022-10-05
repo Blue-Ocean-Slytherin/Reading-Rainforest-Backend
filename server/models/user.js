@@ -21,4 +21,38 @@ module.exports = {
       return null;
     }
   },
+
+  makeNewUser: async ( uid, fullName, email, phoneNumber, profilePhoto, lat, long ) => {
+    try {
+      let results = await User.create({
+        uid,
+        fullName,
+        email,
+        phoneNumber,
+        profilePhoto,
+        lat,
+        long,
+        books: [],
+        saved: [],
+        ratingTotal: 0,
+        ratingsCount: 0,
+        trades: [],
+        chats: [],
+      });
+      return results;
+    } catch (err) {
+      console.log('There was an error @ user/models.makeNewUser', err);
+      return null;
+    }
+  },
+
+  deleteUser: async ( uid )=> {
+    try {
+      let results = await User.deleteOne({uid});
+      return results;
+    } catch (err) {
+      console.log('There was an error @ user/models.deleteUser', err);
+      return null;
+    }
+  }
 };
