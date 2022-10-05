@@ -2,7 +2,6 @@ const express = require("express");
 const db = require("./db/schema");
 var cors = require("cors");
 const app = express();
-const cors = require('cors');
 const morgan = require("morgan");
 const Router = require("express");
 const axios = require("axios").default;
@@ -10,7 +9,6 @@ const searchRouter = require("./routes/search.js");
 const userRouter = require("./routes/user.js");
 const tradeRouter = require("./routes/trade.js")
 
-app.use(cors());
 app.use(
   morgan(":method :url :status :res[content-length] - :response-time ms")
 );
