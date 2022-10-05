@@ -46,6 +46,20 @@ module.exports = {
     }
   },
 
+  addNewBook: async ( uid, ISBN ) => {
+    try {
+      let results = await User.findOneAndUpdate(
+        {uid},
+        {$push: { books: [ISBN] } },
+        {new:true}
+      );
+      return results;
+    } catch (err) {
+      console.log('There was an error @ user/models.addNewBook', err);
+      return null;
+    }
+  },
+
   deleteUser: async ( uid )=> {
     try {
       let results = await User.deleteOne({uid});

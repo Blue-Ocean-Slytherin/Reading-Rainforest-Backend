@@ -25,7 +25,6 @@ module.exports = {
   makeNewUser: async ( req, res ) => {
     try {
       const { uid, fullName, email, phoneNumber, profilePhoto, lat, long } = req.body;
-
       let check = await userModel.getUserInfo(uid);
       if (!check[0]) {
         let newUser = await userModel.makeNewUser(uid, fullName, email, phoneNumber, profilePhoto, lat, long);
@@ -35,6 +34,17 @@ module.exports = {
       }
     } catch (err) {
       console.log('There was an error in user/controllers.makeNewUser', err);
+      res.sendStatus(500);
+    }
+  },
+
+  addNewBook: async ( req, res ) => {
+    try {
+      const { uid, ISBN } = req.params;
+      let results = await userModel.addNewBook(uid, ISBN);
+      res.send(results);
+    } catch (err) {
+      console.log('There was an error in user/controllers.addNewBook', err);
       res.sendStatus(500);
     }
   },
