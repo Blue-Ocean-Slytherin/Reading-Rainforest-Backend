@@ -8,10 +8,20 @@ module.exports = {
     });
   },
   searchBooks: (req, res) => {
+    console.log("req.params:", req.params);
+    console.log("google api: ", process.env.REACT_APP_GOOGLE_BOOKS_API);
     axios
       .get(`https://www.googleapis.com/books/v1/volumes?q=${req.params}`)
       .then((response) => {
         var onlyISBN = [];
+        console.log(
+          "response.data:",
+          response.data.items.volumeInfo || "no volumeInfo"
+        );
+        console.log(
+          "isbn:",
+          response.data.items.volumeInfo?.industryIdentifiers || "not found"
+        );
         response.data.items.forEach((isbn) => {
           if (isbn.volumeInfo.industryIdentifiers[0] !== undefined) {
             onlyISBN.push(isbn.volumeInfo.industryIdentifiers[0].identifier);
@@ -20,6 +30,7 @@ module.exports = {
             onlyISBN.push(isbn.volumeInfo.industryIdentifiers[1].identifier);
           }
         });
+        console.log("only isbn: ", onlyISBN);
         var fullData = response.data.items;
         searchModel.search.searchBooks(onlyISBN).then((response) => {
           var re = response
@@ -29,6 +40,7 @@ module.exports = {
             });
           var foundISBN = response.filter((val) => val.length > 0)[0][0]
             .books[0];
+          console.log("Found ISBN:", foundISBN);
           var userData = response.filter((val) => val.length > 0)[0];
           axios
             .get(`https://www.googleapis.com/books/v1/volumes?q=${foundISBN}`)
