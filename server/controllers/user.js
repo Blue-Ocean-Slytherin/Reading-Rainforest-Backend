@@ -24,10 +24,11 @@ module.exports = {
 
   makeNewUser: async ( req, res ) => {
     try {
-      const { uid, fullName, email, phoneNumber, profilePhoto, lat, long } = req.body;
+      const { uid, name, email, phoneNumber, profilePhoto, lat, long } = req.body;
+      console.log(uid, name, email, phoneNumber, profilePhoto, lat, long);
       let check = await userModel.getUserInfo(uid);
       if (!check[0]) {
-        let newUser = await userModel.makeNewUser(uid, fullName, email, phoneNumber, profilePhoto, lat, long);
+        let newUser = await userModel.makeNewUser(uid, name, email, phoneNumber, profilePhoto, lat, long);
         res.send(newUser);
       } else {
         res.sendStatus(400);

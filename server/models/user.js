@@ -22,11 +22,11 @@ module.exports = {
     }
   },
 
-  makeNewUser: async ( uid, fullName, email, phoneNumber, profilePhoto, lat, long ) => {
+  makeNewUser: async ( uid, name, email, phoneNumber, profilePhoto, lat, long ) => {
     try {
       let results = await User.create({
         uid,
-        fullName,
+        name,
         email,
         phoneNumber,
         profilePhoto,
