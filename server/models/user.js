@@ -46,11 +46,11 @@ module.exports = {
     }
   },
 
-  addNewBook: async ( uid, ISBN ) => {
+  addNewBook: async ( uid, ISBN, bookName ) => {
     try {
       let results = await User.findOneAndUpdate(
         {uid},
-        {$push: { books: [ISBN] } },
+        {$push: { books: [{isbn: ISBN, bookName: bookName}] } },
         {new:true}
       );
       return results;

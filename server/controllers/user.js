@@ -40,8 +40,8 @@ module.exports = {
 
   addNewBook: async ( req, res ) => {
     try {
-      const { uid, ISBN } = req.params;
-      let results = await userModel.addNewBook(uid, ISBN);
+      const { uid, ISBN, bookName } = req.params;
+      let results = await userModel.addNewBook(uid, ISBN, bookName);
       res.send(results);
     } catch (err) {
       console.log('There was an error in user/controllers.addNewBook', err);

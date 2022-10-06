@@ -13,7 +13,7 @@ let userSchema = mongoose.Schema({
   phoneNumber: { type: String },
   lat: { type: String },
   long: { type: String },
-  books: [{ type: String }],
+  books: [{ { type: String }}],
   saved: [{ type: String }],
   ratingTotal: { type: Number },
   ratingsCount: { type: Number },
