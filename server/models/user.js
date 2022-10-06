@@ -71,9 +71,20 @@ module.exports = {
 
   deleteBook: async ( uid, ISBN ) => {
     try {
-      let userInfo = await getUserInfo(uid);
-      console.log(userInfo);
-      return;
+      let userInfo = await User.find({uid});
+      let bookList = userInfo[0]['books'];
+      for ( let i = 0; i < bookList.length; i++ ) {
+        if ( bookList[i]['isbn'] === ISBN ) {
+          bookList.splice(i,1);
+          break;
+        }
+      }
+      let updatedUserInfo = await User.findOneAndUpdate(
+        {uid},
+        {books: bookList },
+        {new:true}
+      );
+      return updatedUserInfo;
     } catch (err) {
       console.log('There was an error @ user/models.deleteBook', err);
       return null;
