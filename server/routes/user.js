@@ -5,7 +5,7 @@ router.get('/users', userControllers.getUsers); // temp, just to see what's in D
 
 router.get('/:uid/', userControllers.getUserInfo);
 router.post('/new', userControllers.makeNewUser);
-router.patch('/:uid/book/:ISBN', userControllers.addNewBook);
+router.patch('/:uid/ISBN/:ISBN/bookName/:bookName', userControllers.addNewBook);
 
 router.delete('/:uid', userControllers.deleteUser);
 

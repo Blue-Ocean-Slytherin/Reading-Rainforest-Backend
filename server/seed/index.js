@@ -31,11 +31,17 @@ const seedDB = async () => {
       phoneNumber: phoneNumbers[x],
       lat: locations[x].newLatitude,
       long: locations[x].newLongitude,
-      ratingTotal: 0,
-      ratingsCount: 0,
-      books: [books[x].isbn],
-      uid: uuid.v4(),
+      books: [
+        {
+          bookName: books[x].title,
+          isbn: books[x].isbn,
+        },
+      ],
       saved: [],
+      ratingTotal: Math.floor(Math.random() * 6),
+      ratingsCount: 1,
+      averageRating: Math.floor(Math.random() * 6),
+      uid: uuid.v4(),
     });
     await user.save();
   }
