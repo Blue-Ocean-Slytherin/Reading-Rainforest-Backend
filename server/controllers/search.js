@@ -12,11 +12,12 @@ module.exports = {
     searchModel.search.searchBooks(req.params).then((response) => {
       if (response.length > 0) {
         var userData = response;
-        var isbn = response[0].books[0].isbn;
+        var book = response[0].books.find((val) => {
+          return val.bookName === req.params.searchInput;
+        });
+        var isbn = book.isbn;
         axios
-          .get(
-            `https://www.googleapis.com/books/v1/volumes?q=${response[0].books[0].isbn}`
-          )
+          .get(`https://www.googleapis.com/books/v1/volumes?q=${isbn}`)
           .then((result) => {
             var bookData = result.data.items.find((element) => {
               return (
