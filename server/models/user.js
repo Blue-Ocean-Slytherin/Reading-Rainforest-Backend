@@ -13,8 +13,7 @@ module.exports = {
 
   getUserInfo: async ( uid ) => {
     try {
-      let queryObj = {uid};
-      let results = await User.find(queryObj);
+      let results = await User.find({uid});
       return results;
     } catch (err) {
       console.log('There was an error @ user/models.getUserInfo', err);
@@ -68,5 +67,16 @@ module.exports = {
       console.log('There was an error @ user/models.deleteUser', err);
       return null;
     }
-  }
+  },
+
+  deleteBook: async ( uid, ISBN ) => {
+    try {
+      let userInfo = await getUserInfo(uid);
+      console.log(userInfo);
+      return;
+    } catch (err) {
+      console.log('There was an error @ user/models.deleteBook', err);
+      return null;
+    }
+  },
 };

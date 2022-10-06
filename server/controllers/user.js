@@ -59,4 +59,8 @@ module.exports = {
       res.sendStatus(500);
     }
   },
+
+  deleteBook: async ( req, res ) => {
+
+  }
 };
