@@ -13,10 +13,16 @@ let userSchema = mongoose.Schema({
   phoneNumber: { type: String },
   lat: { type: String },
   long: { type: String },
-  books: [{ type: String }],
+  books: [
+    {
+      bookName: { type: String },
+      isbn: { type: String },
+    },
+  ],
   saved: [{ type: String }],
   ratingTotal: { type: Number },
   ratingsCount: { type: Number },
+  averageRating: { type: Number }, // random number from 0 to 5
   uid: { type: String },
   trades: [
     {
