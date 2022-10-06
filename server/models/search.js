@@ -5,11 +5,17 @@ module.exports = {
     return User.find();
   },
   searchBooks: async (params) => {
-    var prom = await Promise.all(
-      params.map((isbn) => {
-        return User.find({ books: isbn }).exec();
-      })
-    );
-    return prom;
+    console.log("test case 1: ", params.searchInput);
+    return User.find({
+      "books.bookName": params.searchInput,
+    }).exec();
+    // var prom = await Promise.all(
+    //   params.map((isbn) => {
+    //     return User.find({
+    //       "books.bookName": params,
+    //     }).exec();
+    //   })
+    // );
+    // return prom;
   },
 };
