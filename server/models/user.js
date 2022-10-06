@@ -59,6 +59,20 @@ module.exports = {
     }
   },
 
+  patchAboutMe: async ( uid, aboutMe ) => {
+    try {
+      let results = await User.findOneAndUpdate(
+        {uid},
+        {aboutMe},
+        {new:true}
+      );
+      return results;
+    } catch (err) {
+      console.log('There was an error @ user/models.patchAboutMe', err);
+      res.sendStatus(500);
+    }
+  },
+
   deleteUser: async ( uid )=> {
     try {
       let results = await User.deleteOne({uid});

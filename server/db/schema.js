@@ -26,7 +26,7 @@ let userSchema = mongoose.Schema({
   uid: { type: String },
   trades: [
     {
-      transactionID: mongoose.ObjectId,
+      transactionID: { type: String },
       ratingNumber: { type: Number },
       tradedToUser: { type: String }, // uid of other user
       status: { type: String }, // accepted, decline, pending, completed(?)

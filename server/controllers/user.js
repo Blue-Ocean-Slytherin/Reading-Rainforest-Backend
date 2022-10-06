@@ -50,6 +50,20 @@ module.exports = {
     }
   },
 
+  patchAboutMe: async ( req, res ) => {
+    try {
+      const { uid } = req.params;
+      const { aboutMe } = req.body;
+      let results = await userModel.patchAboutMe(uid, aboutMe);
+      console.log(results);
+
+      res.sendStatus(418);
+    } catch (err) {
+      console.log('There was an error in user/controllers.patchAboutMe', err);
+      res.sendStatus(500);
+    }
+  },
+
   deleteUser: async ( req, res ) => {
     try {
       let results = await userModel.deleteUser(req.params.uid);
