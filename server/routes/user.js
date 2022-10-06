@@ -8,5 +8,6 @@ router.post('/new', userControllers.makeNewUser);
 router.patch('/:uid/ISBN/:ISBN/bookName/:bookName', userControllers.addNewBook);
 
 router.delete('/:uid', userControllers.deleteUser);
+router.delete('/:uid/ISBN/:ISBN', userControllers.deleteBook);
 
 module.exports = router;

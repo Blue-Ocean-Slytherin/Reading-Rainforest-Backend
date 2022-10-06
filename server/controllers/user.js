@@ -61,6 +61,13 @@ module.exports = {
   },
 
   deleteBook: async ( req, res ) => {
-
+    try {
+      const { uid, ISBN } = req.params;
+      let results = await userModel.deleteBook( uid, ISBN);
+      res.send(results);
+    } catch (err) {
+      console.log('There was an error in user/controllers.deleteBook', err);
+      res.sendStatus(500);
+    }
   }
 };
