@@ -26,7 +26,7 @@ let userSchema = mongoose.Schema({
   uid: { type: String },
   trades: [
     {
-      transactionID: mongoose.ObjectId,
+      transactionID: {type: String},
       ratingNumber: { type: String },
       tradedToUser: { type: String },
       status: { type: String },

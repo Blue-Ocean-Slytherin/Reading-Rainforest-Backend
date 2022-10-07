@@ -8,7 +8,14 @@ module.exports = {
     });
   },
   updateOne: (req, res) => {
-    tradeModel.trade.updateStatus(req.query)
+    tradeModel.trade.updateStatus(req.body)
+      .then(() => {
+        res.sendStatus(200)
+      })
+      .catch ((err) => res.sendStatus(500))
+  },
+  deleteOne: (req, res) => {
+    tradeModel.trade.deleteTrade(req.body)
       .then(() => {
         res.sendStatus(200)
       })
