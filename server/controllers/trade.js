@@ -27,5 +27,12 @@ module.exports = {
         res.sendStatus(200)
       })
       .catch ((err) => res.sendStatus(500))
-  }
+  },
+  reviewAdd: (req, res) => {
+    tradeModel.trade.addReview(req.body)
+      .then(() => {
+        res.sendStatus(200)
+      })
+      .catch ((err) => res.sendStatus(500))
+  },
 };

@@ -19,5 +19,8 @@ module.exports = {
       transactionID: params.transactionID
     }
     return User.updateOne({"uid": params.uid}, {$push: {"trades": temp}})
+  },
+  addReview: (params) => {
+    return User.updateMany({"uid": params.uid}, {$inc: {"ratingTotal": parseInt(params.review), "ratingsCount": 1}});
   }
 };
