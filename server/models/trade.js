@@ -9,6 +9,15 @@ module.exports = {
   },
   deleteTrade: (params) => {
     return User.findOneAndUpdate({"uid": params.uid}, {$pull: {"trades": {"transactionID": params.tradeId} } })
+  },
+  addTrade: (params) => {
+    const temp = {
+      isbnUser: params.isbnUser,
+      isbnTrader: params.isbnTrader,
+      tradedToUser: params.tradedToUser,
+      status: params.status,
+      transactionID: params.transactionID
+    }
+    return User.updateOne({"uid": params.uid}, {$push: {"trades": temp}})
   }
-
 };

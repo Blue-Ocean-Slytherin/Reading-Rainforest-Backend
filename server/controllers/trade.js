@@ -20,5 +20,12 @@ module.exports = {
         res.sendStatus(200)
       })
       .catch ((err) => res.sendStatus(500))
+  },
+  addOne: (req, res) => {
+    tradeModel.trade.addTrade(req.body)
+      .then(() => {
+        res.sendStatus(200)
+      })
+      .catch ((err) => res.sendStatus(500))
   }
 };
