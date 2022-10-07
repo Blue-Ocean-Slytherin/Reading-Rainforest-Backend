@@ -8,30 +8,37 @@ module.exports = {
       res.status(200).json(response);
     });
   },
-  searchBooks: (req, res) => {
-    searchModel.search.searchBooks(req.params).then((response) => {
-      if (response.length > 0) {
-        var userData = response;
-        var book = response[0].books.find((val) => {
-          return val.bookName === req.params.searchInput;
+  searchBooks: async (req, res) => {
+    let response = await searchModel.search.searchBooks(req.params);
+    if (response.length > 0) {
+      let userData = response;
+      let isbnList = [];
+      response.forEach((user) => {
+        var book = user.books.find((val) => {
+          return val.bookName.match(req.params.searchInput)?.length;
         });
-        var isbn = book.isbn;
-        axios
-          .get(`https://www.googleapis.com/books/v1/volumes?q=${isbn}`)
-          .then((result) => {
-            var bookData = result.data.items.find((element) => {
-              return (
-                element.volumeInfo.industryIdentifiers[0].identifier === isbn
-              );
-            });
-
-            var obj = {
-              bookData,
-              userData,
-            };
-            res.status(200).json(obj);
-          });
-      }
-    });
+        isbnList.push(book.isbn);
+      })
+      let googleBooksRes = await Promise.all(isbnList.map( async (isbn)=>{
+        return axios.get(`https://www.googleapis.com/books/v1/volumes?q=${isbn}`);
+      }));
+      googleBooksRes = googleBooksRes.map((result)=>(result.data));
+      let filteredBooksData = [];
+      googleBooksRes.forEach((singleRes)=>{
+        let temp = singleRes.items.find((element)=>{
+          return (
+            isbnList.indexOf(element.volumeInfo.industryIdentifiers[0].identifier) > -1 || isbnList.indexOf(element.volumeInfo.industryIdentifiers[1].identifier) > -1
+          );
+        });
+        filteredBooksData.push(temp);
+      })
+      var obj = {
+        bookData: filteredBooksData,
+        userData,
+      };
+      res.status(200).json(obj);
+    } else {
+      res.sendStatus(500);
+    }
   },
 };
