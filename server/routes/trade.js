@@ -3,4 +3,10 @@ const router = require("express").Router();
 
 router.get("/trades", controller.trade.getAll);
 
+router.put("/status", controller.trade.updateOne);
+
+router.put("/delete", controller.trade.deleteOne);
+
+router.post("/add", controller.trade.addOne);
+
 module.exports = router;
