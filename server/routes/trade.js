@@ -9,4 +9,6 @@ router.put("/delete", controller.trade.deleteOne);
 
 router.post("/add", controller.trade.addOne);
 
+router.put("/review", controller.trade.reviewAdd);
+
 module.exports = router;
