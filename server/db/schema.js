@@ -22,14 +22,14 @@ let userSchema = mongoose.Schema({
   saved: [{ type: String }],
   ratingTotal: { type: Number },
   ratingsCount: { type: Number },
-  averageRating: { type: Number }, // random number from 0 to 5
+  averageRating: { type: Number },
   uid: { type: String },
   trades: [
     {
-      transactionID: mongoose.ObjectId,
-      ratingNumber: { type: String },
-      tradedToUser: { type: String },
-      status: { type: String },
+      transactionID: { type: String },
+      ratingNumber: { type: Number },
+      tradedToUser: { type: String }, // uid of other user
+      status: { type: String }, // accepted, decline, pending, completed(?)
       isbnUser: { type: String },
       isbnTrader: { type: String },
       dateTime: { type: Date },
@@ -49,6 +49,7 @@ let userSchema = mongoose.Schema({
       ],
     },
   ],
+  aboutMe: { type: String }
 });
 
 let User = mongoose.model("users", userSchema);

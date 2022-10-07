@@ -24,10 +24,11 @@ module.exports = {
 
   makeNewUser: async ( req, res ) => {
     try {
-      const { uid, fullName, email, phoneNumber, profilePhoto, lat, long } = req.body;
+      const { uid, name, email, phoneNumber, profilePhoto, lat, long } = req.body;
+      console.log(uid, name, email, phoneNumber, profilePhoto, lat, long);
       let check = await userModel.getUserInfo(uid);
       if (!check[0]) {
-        let newUser = await userModel.makeNewUser(uid, fullName, email, phoneNumber, profilePhoto, lat, long);
+        let newUser = await userModel.makeNewUser(uid, name, email, phoneNumber, profilePhoto, lat, long);
         res.send(newUser);
       } else {
         res.sendStatus(400);
@@ -40,11 +41,25 @@ module.exports = {
 
   addNewBook: async ( req, res ) => {
     try {
-      const { uid, ISBN } = req.params;
-      let results = await userModel.addNewBook(uid, ISBN);
+      const { uid, ISBN, bookName } = req.params;
+      let results = await userModel.addNewBook(uid, ISBN, bookName);
       res.send(results);
     } catch (err) {
       console.log('There was an error in user/controllers.addNewBook', err);
+      res.sendStatus(500);
+    }
+  },
+
+  patchAboutMe: async ( req, res ) => {
+    try {
+      const { uid } = req.params;
+      const { aboutMe } = req.body;
+      let results = await userModel.patchAboutMe(uid, aboutMe);
+      console.log(results);
+
+      res.sendStatus(418);
+    } catch (err) {
+      console.log('There was an error in user/controllers.patchAboutMe', err);
       res.sendStatus(500);
     }
   },
@@ -58,4 +73,15 @@ module.exports = {
       res.sendStatus(500);
     }
   },
+
+  deleteBook: async ( req, res ) => {
+    try {
+      const { uid, ISBN } = req.params;
+      let results = await userModel.deleteBook( uid, ISBN);
+      res.send(results);
+    } catch (err) {
+      console.log('There was an error in user/controllers.deleteBook', err);
+      res.sendStatus(500);
+    }
+  }
 };

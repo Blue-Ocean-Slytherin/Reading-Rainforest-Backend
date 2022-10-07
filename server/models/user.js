@@ -13,8 +13,7 @@ module.exports = {
 
   getUserInfo: async ( uid ) => {
     try {
-      let queryObj = {uid};
-      let results = await User.find(queryObj);
+      let results = await User.find({uid});
       return results;
     } catch (err) {
       console.log('There was an error @ user/models.getUserInfo', err);
@@ -22,11 +21,11 @@ module.exports = {
     }
   },
 
-  makeNewUser: async ( uid, fullName, email, phoneNumber, profilePhoto, lat, long ) => {
+  makeNewUser: async ( uid, name, email, phoneNumber, profilePhoto, lat, long ) => {
     try {
       let results = await User.create({
         uid,
-        fullName,
+        name,
         email,
         phoneNumber,
         profilePhoto,
@@ -46,17 +45,31 @@ module.exports = {
     }
   },
 
-  addNewBook: async ( uid, ISBN ) => {
+  addNewBook: async ( uid, ISBN, bookName ) => {
     try {
       let results = await User.findOneAndUpdate(
         {uid},
-        {$push: { books: [ISBN] } },
+        {$push: { books: [{isbn: ISBN, bookName: bookName}] } },
         {new:true}
       );
       return results;
     } catch (err) {
       console.log('There was an error @ user/models.addNewBook', err);
       return null;
+    }
+  },
+
+  patchAboutMe: async ( uid, aboutMe ) => {
+    try {
+      let results = await User.findOneAndUpdate(
+        {uid},
+        {aboutMe},
+        {new:true}
+      );
+      return results;
+    } catch (err) {
+      console.log('There was an error @ user/models.patchAboutMe', err);
+      res.sendStatus(500);
     }
   },
 
@@ -68,5 +81,27 @@ module.exports = {
       console.log('There was an error @ user/models.deleteUser', err);
       return null;
     }
-  }
+  },
+
+  deleteBook: async ( uid, ISBN ) => {
+    try {
+      let userInfo = await User.find({uid});
+      let bookList = userInfo[0]['books'];
+      for ( let i = 0; i < bookList.length; i++ ) {
+        if ( bookList[i]['isbn'] === ISBN ) {
+          bookList.splice(i,1);
+          break;
+        }
+      }
+      let updatedUserInfo = await User.findOneAndUpdate(
+        {uid},
+        {books: bookList },
+        {new:true}
+      );
+      return updatedUserInfo;
+    } catch (err) {
+      console.log('There was an error @ user/models.deleteBook', err);
+      return null;
+    }
+  },
 };

@@ -5,11 +5,8 @@ module.exports = {
     return User.find();
   },
   searchBooks: async (params) => {
-    var prom = await Promise.all(
-      params.map((isbn) => {
-        return User.find({ books: isbn }).exec();
-      })
-    );
-    return prom;
+    return await User.find({
+      "books.bookName": { "$regex": params.searchInput, "$options": "i" },
+    }).exec();
   },
 };
