@@ -8,7 +8,9 @@ module.exports = {
       res.status(200).json(response);
     });
   },
+
   searchBooks: async (req, res) => {
+    try {
     let response = await searchModel.search.searchBooks(req.params);
     if (response.length > 0) {
       let userData = response;
@@ -53,5 +55,9 @@ module.exports = {
     } else {
       res.status(200).json({});
     }
+  } catch (err) {
+    console.log('Error in controllers/search searchBooks', err)
+    res.sendStatus(500);
+  }
   },
 };
