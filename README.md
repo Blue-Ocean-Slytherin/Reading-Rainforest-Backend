@@ -109,7 +109,7 @@ Andy Ho:
 <br />
 Paul Ko:
 <br />
-Aaron Yabut:
+Aaron Yabut: Home Page Routes
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
