@@ -88,7 +88,13 @@ This is a backend server meant to be hooked up to a mongoDB instance of your cho
 
 ### Installation
 
-Run the commands: 1) npm install 2) npm run
+Run the following commands in order:  
+```
+npm install
+```
+```
+npm run
+```
 
 Server should be up and running, ready to accept traffic from <a href="https://github.com/Blue-Ocean-Slytherin/Reading-Rainforest-FrontEnd/">our front end appplication</a>
 
@@ -110,6 +116,9 @@ Andy Ho:
 Paul Ko:
 <br />
 Aaron Yabut: Home Page Routes
+
+[![Linkedin: LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white&link=https://www.linkedin.com/in/aaron-yabut/)](https://www.linkedin.com/in/aaron-yabut/)
+[![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white&link=https://github.com/Aaronyabut)](https://github.com/Aaronyabut) 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
